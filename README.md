@@ -6,3 +6,4 @@ echarts常用图表配置说明
  3.bar.js //柱状图
  4.doughnut.js //环形图
  5.pie.js // 饼图
+ 6.nightingale.js // 南丁格尔图
