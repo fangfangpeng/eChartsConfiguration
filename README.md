@@ -1,8 +1,6 @@
 # eChartsConfiguration
 echarts常用图表配置说明
 常用的echarts图表配置说明：
- #eg
- ###########备注###########
  1.line.js // 线性图
  2.lineArea.js // 线性面积图
  3.bar.js //柱状图
