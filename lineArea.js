@@ -7,13 +7,6 @@ const option = {
     yAxis: {
         type: 'value'
     },
-    tooltip: {
-        show: true,
-        trigger: 'axis',
-        axisPointer: {
-            type: 'line',
-        },
-    },
     series: [{
         data: [820, 932, 901, 934, 1290, 1330, 1320],
         type: 'line',
@@ -29,10 +22,27 @@ const option = {
                 }, {
                     offset: 1, color: '#fff' // 100% 处的颜色
                 }],
-                globalCoord: false // 缺省为 false
+                globalCoord: false  // 缺省为 false
             }
+            // color: {
+            //     type: 'radial',
+            //     x: 0.5,
+            //     y: 0.5,
+            //     r: 0.5,
+            //     colorStops: [{
+            //         offset: 0, color: 'red' // 0% 处的颜色
+            //     }, {
+            //         offset: 1, color: 'blue' // 100% 处的颜色
+            //     }],
+            //     globalCoord: false // 缺省为 false
+            // }
+            // color: {
+            //     image: imageDom, // 支持为 HTMLImageElement, HTMLCanvasElement，不支持路径字符串
+            //     repeat: 'repeat' // 是否平铺, 可以是 'repeat-x', 'repeat-y', 'no-repeat'
+            // }
         },
-        smooth: true
+        smooth: true, // 是否平滑曲线显示。
+        smoothMonotone: 'x' //折线平滑后是否在一个维度上保持单调性，可以设置成'x', 'y'来指明是在 x 轴或者 y 轴上保持单调性。
     }]
 };
 const charts = echarts.init(document.getElementById('chart'));
