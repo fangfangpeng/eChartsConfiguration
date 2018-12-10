@@ -8,3 +8,4 @@
  * 6.nightingale.js // 南丁格尔图
  * 7.option-bar.js //柱状图
  * 8.treemap-basic-simple.html // 矩形树图
+ ### [点击前往echarts官网查看详细](http://echarts.baidu.com/examples/)
