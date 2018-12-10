@@ -1,5 +1,4 @@
 # eChartsConfiguration
-
 ## 常用的echarts图表配置说明：
  * 1.line.js // 线性图
  * 2.lineArea.js // 线性面积图 
