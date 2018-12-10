@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%;"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+var getRandomColor = function(){
+
+  return '#'+'0123456789abcdef'.split('').map(function(v,i,a){
+
+    return i>5 ? null : a[Math.floor(Math.random()*16)] }).join('');
+
+};
+var data = [{
+			itemStyle: {
+                gapWidth:5,
+                
+            },
+            children: [
+					{
+						name: '店铺兴趣人群',       // Second leaf of first tree
+						value: 29,
+						
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+						}
+					},
+					{
+						name: '大促专用人群',       // Son of first tree
+						value: 20,
+						
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+						}
+					},
+					{
+						name: '保持活跃人群',       // Son of first tree
+						value: 25,
+						
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+						}
+					},
+					{
+						name: '店铺高价值人群',       // Son of first tree
+						value: 60,
+						
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+						}
+					},
+						{
+						name: '店铺待激活人群',       // Son of first tree
+						value: 29,
+						
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+						}
+					},
+					{
+						name: '0元入会待转化人群',       // Son of first tree
+						value: 54,
+						
+						label: {
+							show: true
+						},
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+							
+						}
+					},
+					{
+						name: '满足消费门槛未入会人群',       // Son of first tree
+						value: 27,
+						
+						label: {
+							show: true
+						},
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+							
+						}
+					},
+					{
+						name: '钻展广告敏感人群',       // Son of first tree
+						value: 33,
+						
+						label: {
+							show: true
+						},
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+							
+						}
+					},
+					{
+						name: '指定商品偏好人群',       // Son of first tree
+						value: 71,
+						
+						label: {
+							show: true
+						},
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+							
+						}
+					},
+					{
+						name: '互动偏好人群',       // Son of first tree
+						value: 71,
+						
+						label: {
+							show: true
+						},
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+							
+						}
+					},
+					{
+						name: 'KOL人群',       // Son of first tree
+						value: 71,
+		
+						label: {
+							show: true
+						},
+						itemStyle: {
+							color: getRandomColor(),
+							gapWidth:10,
+						}
+					}]
+            }];
+option = null;
+option = {
+	tooltip: {
+		trigger: 'item'
+	},
+	legend: {
+		show: false
+	},
+    series: [{
+		name: '',
+        type: 'treemap',
+        data: data,
+		roam: false,
+		breadcrumb: {
+			show: false
+		},
+		animationDuration: 0,
+		animationEasing: 'elasticOut',
+		tooltip: {
+			backgroundColor: '#fff',
+			textStyle: {
+				color: '#000'
+			},
+			formatter: function (a, b, c, d) {
+				return '该人群已被使用'+a.value+'次';
+			}
+		}
+    }]
+};
+;
+
+
+var selectedCard = [];
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+	myChart.on('click', function (obj) {
+		if (selectedCard.indexOf(obj.name) === -1) {
+			selectedCard.push(obj.name);
+		} else {
+			selectedCard.splice(selectedCard.indexOf(obj.name), 1);
+		}
+		data.forEach(function (item) {
+			item.children.forEach(function (innerItem, index) {
+				if (innerItem.name === obj.name && selectedCard.indexOf(obj.name) !== -1) {
+					item.children[index].itemStyle.borderWidth = 4;
+					item.children[index].itemStyle.borderColor = '#000';
+				} else if (innerItem.name === obj.name && selectedCard.indexOf(obj.name) === -1) {
+					item.children[index].itemStyle.borderWidth = 0;
+					item.children[index].itemStyle.borderColor = '';
+
+				}
+			})
+		});
+		myChart.setOption(option, true);
+	});
+	
+}
+       </script>
+   </body>
+</html>
